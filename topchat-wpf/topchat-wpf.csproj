@@ -10,7 +10,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="background.png" />
+    <None Remove="Menubackground.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\..\Desktop\Igor\topchat-logic\TopChat\TopChat.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="background.png" />
+    <Resource Include="Menubackground.jpg" />
   </ItemGroup>
 
 </Project>

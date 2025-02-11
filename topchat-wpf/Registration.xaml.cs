@@ -1,16 +1,15 @@
 ﻿using System.Windows;
 using TopChat.Services.Interfaces;
 using TopChat.Services;
-using System.Windows.Controls;
-using TopChat.Models;
+
 
 namespace topchat_wpf
 {
-	public partial class MainWindow : Window
+	public partial class Registration : Window
 	{
 		private ADatabaseConnection _databaseConnection;
 
-		public MainWindow()
+		public Registration()
 		{
 			this._databaseConnection = new SqliteConnection();
 			InitializeComponent();
@@ -22,16 +21,14 @@ namespace topchat_wpf
 
 			if (UserLogin.Text != "" || UserPassword.Text != "")
 			{
-				if (userServes.FindUser(UserLogin.Text))
+				if (!userServes.Registration(UserLogin.Text, UserPassword.Text))
 				{
-					Menu menu = new Menu(UserLogin.Text);
-					menu.Show();
-					this.Close();
+					MessageBox.Show("Такой логин уже существует. Пожалуйста, придумайте новый.", Name = "ERROR");
 				}
 				else
 				{
-					Registration registration = new Registration();
-					registration.Show();
+					Menu viewMenu = new Menu(UserLogin.Text);
+					viewMenu.Show();
 					this.Close();
 				}
 			}
@@ -39,6 +36,7 @@ namespace topchat_wpf
 			{
 				MessageBox.Show("ENTER LOGIN AND PASSWORD.", Name = "ERROR");
 			}
+
 		}
 
 		private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -49,13 +47,6 @@ namespace topchat_wpf
 		private void UserPassword_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
 		{
 
-		}
-
-		private void Button_Click_1(object sender, RoutedEventArgs e)
-		{
-			Registration registration = new Registration();
-			registration.Show();
-			this.Close();
 		}
 	}
 }
