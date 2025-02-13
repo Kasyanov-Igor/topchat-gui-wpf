@@ -27,7 +27,7 @@ namespace topchat_wpf
 				}
 				else
 				{
-					Menu viewMenu = new Menu(UserLogin.Text);
+					Menu viewMenu = new Menu();
 					viewMenu.Show();
 					this.Close();
 				}
