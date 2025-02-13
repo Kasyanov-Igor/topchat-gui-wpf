@@ -1,8 +1,6 @@
 ﻿using System.Windows;
 using TopChat.Services.Interfaces;
 using TopChat.Services;
-using System.Windows.Controls;
-using TopChat.Models;
 
 namespace topchat_wpf
 {
@@ -24,7 +22,7 @@ namespace topchat_wpf
 			{
 				if (userServes.FindUser(UserLogin.Text))
 				{
-					Menu menu = new Menu(UserLogin.Text);
+					Menu menu = new Menu();
 					menu.Show();
 					this.Close();
 				}
