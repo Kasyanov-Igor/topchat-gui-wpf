@@ -1,0 +1,14 @@
+﻿<Window x:Class="topchat_wpf.ClientPart"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:topchat_wpf"
+        mc:Ignorable="d"
+        Title="ClientPart" Height="450" Width="800">
+    <Grid>
+        <TextBox HorizontalAlignment="Center" Margin="0,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372" Height="173"/>
+        <Button Content="SEND" HorizontalAlignment="Center" Margin="0,314,0,0" VerticalAlignment="Top" Height="38" Width="175" FontSize="20"/>
+
+    </Grid>
+</Window>

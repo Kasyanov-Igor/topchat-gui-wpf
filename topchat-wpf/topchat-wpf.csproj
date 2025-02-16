@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Desktop\Igor\topchat-logic\TopChat\TopChat.csproj" />
+    <ProjectReference Include="..\..\topchat-logic\TopChat\TopChat.csproj" />
   </ItemGroup>
 
   <ItemGroup>
