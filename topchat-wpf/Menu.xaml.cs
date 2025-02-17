@@ -1,24 +1,35 @@
 ﻿using System.Windows;
+using TopChat.Models;
 
 namespace topchat_wpf
 {
 	public partial class Menu : Window
 	{
-		public Menu()
+		private User _user;
+
+		public Menu(User user)
 		{
 			InitializeComponent();
+			this._user = user;
 		}
 
-		private void Button_Click(object sender, RoutedEventArgs e)
+		private void ClientServerButton_Click(object sender, RoutedEventArgs e)
 		{
 			Client___Server client___Server = new Client___Server();
 			client___Server.Show();
 			this.Close();
 		}
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
+		private void Client_Button_Click_1(object sender, RoutedEventArgs e)
+		{
 
-        }
-    }
+		}
+
+		private void ContactButton_Click_1(object sender, RoutedEventArgs e)
+		{
+			ContactList contact = new ContactList(this._user);
+			contact.Show();
+			this.Close();
+		}
+	}
 }

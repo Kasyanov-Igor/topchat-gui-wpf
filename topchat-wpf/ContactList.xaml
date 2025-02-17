@@ -7,14 +7,20 @@
         mc:Ignorable="d"
         Title="ContactList" Height="450" Width="800">
     <Grid>
-        <Button Content="Add contact" x:Name="AddContact" HorizontalAlignment="Left" Margin="93,243,0,0" VerticalAlignment="Top" Height="71" Width="141" 
-                Click="AddContact_Click"/>
-        <Button Content="Delete contact" x:Name="DeleteContact" HorizontalAlignment="Left" Margin="293,240,0,0" VerticalAlignment="Top" Click="DeleteContact_Click" Height="78" Width="162"/>
-        <Button Content="Rename contact" x:Name="RenameContact" HorizontalAlignment="Left" Margin="570,243,0,0" VerticalAlignment="Top" Height="71" Width="142" Click="RenameContact_Click"/>
+        <Button Content="Delete contact" x:Name="DeleteContact" HorizontalAlignment="Left" Margin="61,162,0,0" VerticalAlignment="Top" Click="DeleteContact_Click" Height="74" Width="141"/>
+        <Button Content="Rename contact" x:Name="RenameContact" HorizontalAlignment="Left" Margin="61,275,0,0" VerticalAlignment="Top" Height="71" Width="142" Click="RenameContact_Click"/>
         <TextBox HorizontalAlignment="Left" x:Name="NameContact" Margin="280,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
-                 Width="188" Height="38" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" x:Name="InfaContact" Margin="280,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" 
+                 Width="188" Height="38" Visibility="Collapsed" FontSize="20"/>
+        <TextBox HorizontalAlignment="Left" x:Name="InfaContact" Visibility="Collapsed" Margin="280,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" 
                  Width="188" Height="38"  FontSize="20"/>
+        <TextBlock HorizontalAlignment="Left" x:Name="LoginTabl" Visibility="Collapsed" TextAlignment ="Center" 
+                   Margin="314,44,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="106"/>
+        <TextBlock HorizontalAlignment="Left" x:Name="IpAdressTabl" Visibility="Collapsed" TextAlignment ="Center"  
+                   Margin="314,141,0,0" TextWrapping="Wrap" Text="Ip Adress" VerticalAlignment="Top" Width="106"/>
+        <RadioButton Content="Add contact&#xD;&#xA;" HorizontalAlignment="Left" FontSize="15"
+                     Margin="61,73,0,0" VerticalAlignment="Top" Height="31" Width="130" Checked="RadioButton_Checked"/>
+        <Button Content="Enter" x:Name="ButtonEnter" HorizontalAlignment="Left" FontSize="20" Visibility="Collapsed"
+                Margin="320,251,0,0" VerticalAlignment="Top" Height="32" Width="108" Click="ButtonEnter_Click_1"/>
 
     </Grid>
 </Window>

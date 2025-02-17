@@ -1,12 +1,15 @@
 ﻿using System.Windows;
 using TopChat.Services.Interfaces;
 using TopChat.Services;
+using TopChat.Models;
 
 namespace topchat_wpf
 {
 	public partial class MainWindow : Window
 	{
 		private ADatabaseConnection _databaseConnection;
+
+		private User? _user;
 
 		public MainWindow()
 		{
@@ -22,7 +25,8 @@ namespace topchat_wpf
 			{
 				if (userServes.FindUser(UserLogin.Text))
 				{
-					Menu menu = new Menu();
+					this._user = new User() { Login = UserLogin.Text, Password = UserPassword.Text };
+					Menu menu = new Menu(this._user);
 					menu.Show();
 					this.Close();
 				}
