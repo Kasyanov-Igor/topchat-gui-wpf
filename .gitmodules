@@ -1,0 +1,3 @@
+[submodule "topchat-logic/topchat-logic"]
+	path = topchat-logic/topchat-logic
+	url = https://github.com/Kasyanov-Igor/topchat-logic.git
