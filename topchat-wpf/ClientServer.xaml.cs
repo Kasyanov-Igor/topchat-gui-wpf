@@ -2,6 +2,7 @@
 using System.Net.Sockets;
 using System.Text;
 using System.Windows;
+using TopChat.Models;
 using TopChat.Services;
 using TopChat.Services.Interfaces;
 
@@ -11,12 +12,15 @@ namespace topchat_wpf
 	{
 		private IConnectionProvider _providerUdp;
 
+		private IMessageService _messageServiceClient;
+
 		public Client___Server()
 		{
 			InitializeComponent();
 
 			this._providerUdp = new ConnectionProviderUdp();
-			this._providerUdp.SetDestination("127.0.0.1", 5000);
+
+			this._messageServiceClient = new MessageServiceClient(new DataConverterService(), new NetworkDataService(this._providerUdp));
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
@@ -32,7 +36,13 @@ namespace topchat_wpf
 
 		private void Button_Click_1(object sender, RoutedEventArgs e)
 		{
-			this._providerUdp.Send(Encoding.UTF8.GetBytes(ClientText.Text));
+			Message textUser = new Message()
+			{
+				DateTime = DateTime.Now,
+				MediaData = new Media() { Text = ClientText.Text }
+			};
+
+			this._messageServiceClient.AddMessage(textUser);
 			ClientText.Clear();
 		}
 	}
