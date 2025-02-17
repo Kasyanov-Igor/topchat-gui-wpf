@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using Microsoft.Win32;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows;
@@ -44,6 +45,29 @@ namespace topchat_wpf
 
 			this._messageServiceClient.AddMessage(textUser);
 			ClientText.Clear();
+		}
+
+		private void OpenFile_Click(object sender, RoutedEventArgs e)
+		{
+			OpenFileDialog openFileDialog = new OpenFileDialog();
+
+			openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+			if (openFileDialog.ShowDialog() == true)
+			{
+				string filename = openFileDialog.FileName;
+
+				MessageBox.Show("Выбран файл: " + filename);
+
+				Message fileUser = new Message()
+
+				{
+					DateTime = DateTime.Now,
+					MediaData = new Media() { PathToFile = filename }
+				};
+
+				this._messageServiceClient.AddMessage(fileUser);
+			}
 		}
 	}
 }
