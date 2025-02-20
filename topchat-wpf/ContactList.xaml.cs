@@ -1,66 +1,61 @@
 ﻿using System.Windows;
-using TopChat.Models;
 using TopChat.Models.Domains;
+using TopChat.Models.Entities;
 using TopChat.Services;
 using TopChat.Services.Interfaces;
 
 
 namespace topchat_wpf
 {
-    public partial class ContactList : Window
+	public partial class ContactList : Window
 	{
 
 		private ADatabaseConnection _databaseConnection;
 
 		private User _user;
 
+		private UserContactService _userContactService;
+
 		public ContactList(User user)
 		{
 			this._databaseConnection = new SqliteConnection();
 			this._user = user;
+			this._userContactService = new UserContactService(this._databaseConnection);
 
 			InitializeComponent();
 		}
 
 		private void DeleteContact_Click(object sender, RoutedEventArgs e)
 		{
-			IUserServes userServes = new UserServes(this._databaseConnection);
 
-			if (this.NameContact.Text != null || this.InfaContact.Text != null)
-			{
-				string[] ipAndPort = this.InfaContact.Text.Split(":");
+			//if (this.NameContact.Text != null || this.InfaContact.Text != null)
+			//{
+			//	UserContact contact = new UserContact()
+			//	{
+			//		UserName = this.NameContact.Text,
+			//		UserIp = this.InfaContact.Text
+			//	};
 
-				UserContact contact = new UserContact()
-				{
-					UserName = this.NameContact.Text,
-					UserIp = ipAndPort[0],
-					UserPort = ipAndPort[1]
-				};
-
-				if (userServes.DeleteContact(this._user, contact))
-				{
-					MessageBox.Show("User successfully added.", Name = "Ok");
-				}
-			}
-			else
-			{
-				MessageBox.Show("ENTER INF.", Name = "ERROR");
-			}
+			//	if (userServes.DeleteContact(this._user, contact))
+			//	{
+			//		MessageBox.Show("User successfully added.", Name = "Ok");
+			//	}
+			//}
+			//else
+			//{
+			//	MessageBox.Show("ENTER INF.", Name = "ERROR");
+			//}
 		}
 
 		private void RenameContact_Click(object sender, RoutedEventArgs e)
 		{
-			IUserServes userServes = new UserServes(this._databaseConnection);
 
 			if (this.NameContact.Text != null || this.InfaContact.Text != null)
 			{
-				string[] ipAndPort = this.InfaContact.Text.Split(":");
-
 				UserContact contact = new UserContact()
 				{
 					UserName = this.NameContact.Text,
-					UserIp = ipAndPort[0],
-					UserPort = ipAndPort[1]
+					UserIp = this.InfaContact.Text,
 				};
 			}
 			else
@@ -81,29 +76,25 @@ namespace topchat_wpf
 
 		private void ButtonEnter_Click_1(object sender, RoutedEventArgs e)
 		{
-			IUserServes userServes = new UserServes(this._databaseConnection);
-
 			if (this.NameContact.Text != "" || this.InfaContact.Text != "")
 			{
-				string[] ipAndPort = this.InfaContact.Text.Split(":");
-
 				UserContact contact = new UserContact()
 				{
+					user = this._user,
 					UserName = this.NameContact.Text,
-					UserIp = ipAndPort[0],
-					UserPort = ipAndPort[1]
+					UserIp = this.InfaContact.Text,
+					dateTime = DateTime.Now
 				};
 
-				if (userServes.AddContact(this._user, contact))
+				if (this._userContactService.AddContact(contact))
 				{
-					MessageBox.Show("User successfully added.", Name = "Ok");
 					this.NameContact.Clear();
 					this.InfaContact.Clear();
 				}
 			}
 			else
 			{
-				MessageBox.Show("ENTER INF.", Name = "ERROR");
+				this.ContactListText.Visibility = Visibility.Collapsed;
 			}
 		}
 
@@ -111,17 +102,19 @@ namespace topchat_wpf
 		{
 			this.ContactListText.Visibility = Visibility.Visible;
 
-            var a = this._databaseConnection.Users.Where(us => us == _user);
-
-			foreach (var user in this._databaseConnection.Users)
+			if (this._databaseConnection.UserContacts != null)
 			{
-				if (user.Login == this._user.Login)
+				foreach (var contact in this._databaseConnection.UserContacts)
 				{
-					foreach (var contact in user.Contacts)
+					if (contact.user.Login == this._user.Login)
 					{
-						this.ContactListText.Text += contact.UserName;
+						this.ContactListText.Text += $"name - {contact.UserName} ; add date - {contact.dateTime}\n";
 					}
 				}
+			}
+			else
+			{
+				MessageBox.Show("list empty", "ERROR");
 			}
 		}
 	}

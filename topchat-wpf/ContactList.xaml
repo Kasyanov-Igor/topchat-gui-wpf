@@ -19,10 +19,10 @@
                    Margin="314,141,0,0" TextWrapping="Wrap" Text="Ip Adress" VerticalAlignment="Top" Width="106"/>
         <RadioButton Content="Add contact&#xD;&#xA;" HorizontalAlignment="Left" FontSize="15"
                      Margin="61,73,0,0" VerticalAlignment="Top" Height="31" Width="130" Checked="RadioButton_Checked"/>
-        <Button Content="Enter" x:Name="ButtonEnter" HorizontalAlignment="Left" FontSize="20" Visibility="Collapsed"
-                Margin="320,251,0,0" VerticalAlignment="Top" Height="32" Width="108" Click="ButtonEnter_Click_1"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,18,0,0" TextWrapping="Wrap" x:Name="ContactListText" Visibility="Collapsed"
-                 VerticalAlignment="Top" Width="149" Height="363"/>
+        <Button Content="Enter" x:Name="ButtonEnter" HorizontalAlignment="Center" FontSize="20" Visibility="Collapsed"
+                Margin="0,348,0,0" VerticalAlignment="Top" Height="31" Width="150" Click="ButtonEnter_Click_1"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,21,0,0" TextWrapping="Wrap" x:Name="ContactListText" Visibility="Collapsed"
+                 VerticalAlignment="Top" Width="357" Height="325"/>
         <Button Content="Contact list" x:Name="ContactListButton" HorizontalAlignment="Left" FontSize="20"
                 Margin="645,113,0,0" VerticalAlignment="Top" Height="41" Width="145" Click="ContactListButton_Click"/>
 

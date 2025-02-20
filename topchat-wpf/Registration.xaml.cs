@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using TopChat.Services.Interfaces;
 using TopChat.Services;
-using TopChat.Models;
+using TopChat.Models.Entities;
 
 
 namespace topchat_wpf
@@ -20,7 +20,7 @@ namespace topchat_wpf
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            IUserServes userServes = new UserServes(this._databaseConnection);
+            IUserServes userServes = new UserService(this._databaseConnection);
 
             if (UserLogin.Text != "" || UserPassword.Text != "")
             {
@@ -30,7 +30,7 @@ namespace topchat_wpf
                 }
                 else
                 {
-                    this._user = new User() { Login = UserLogin.Text, Password = UserPassword.Text };
+                    this._user = userServes.GetUser(UserLogin.Text);
                     Menu viewMenu = new Menu(this._user);
                     viewMenu.Show();
                     this.Close();

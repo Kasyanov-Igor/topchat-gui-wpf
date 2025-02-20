@@ -1,9 +1,9 @@
 ﻿using System.Windows;
-using TopChat.Models;
+using TopChat.Models.Entities;
 
 namespace topchat_wpf
 {
-	public partial class Menu : Window
+    public partial class Menu : Window
 	{
 		private User _user;
 
