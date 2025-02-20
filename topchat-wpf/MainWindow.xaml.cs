@@ -23,7 +23,7 @@ namespace topchat_wpf
 
 			if (UserLogin.Text != "" || UserPassword.Text != "")
 			{
-				if (userServes.FindUser(UserLogin.Text))
+				if (userServes.FindUser(new User() { Login = UserLogin.Text, Password = UserPassword.Text }))
 				{
 					this._user = new User() { Login = UserLogin.Text, Password = UserPassword.Text };
 					Menu menu = new Menu(this._user);

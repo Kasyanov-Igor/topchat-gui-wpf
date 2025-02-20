@@ -24,7 +24,7 @@ namespace topchat_wpf
 
             if (UserLogin.Text != "" || UserPassword.Text != "")
             {
-                if (!userServes.Registration(UserLogin.Text, UserPassword.Text))
+                if (!userServes.Registration(new User() { Login = UserLogin.Text, Password = UserPassword.Text }))
                 {
                     MessageBox.Show("Такой логин уже существует. Пожалуйста, придумайте новый.", Name = "ERROR");
                 }

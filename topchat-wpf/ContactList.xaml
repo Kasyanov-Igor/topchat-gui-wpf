@@ -21,6 +21,10 @@
                      Margin="61,73,0,0" VerticalAlignment="Top" Height="31" Width="130" Checked="RadioButton_Checked"/>
         <Button Content="Enter" x:Name="ButtonEnter" HorizontalAlignment="Left" FontSize="20" Visibility="Collapsed"
                 Margin="320,251,0,0" VerticalAlignment="Top" Height="32" Width="108" Click="ButtonEnter_Click_1"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,18,0,0" TextWrapping="Wrap" x:Name="ContactListText" Visibility="Collapsed"
+                 VerticalAlignment="Top" Width="149" Height="363"/>
+        <Button Content="Contact list" x:Name="ContactListButton" HorizontalAlignment="Left" FontSize="20"
+                Margin="645,113,0,0" VerticalAlignment="Top" Height="41" Width="145" Click="ContactListButton_Click"/>
 
     </Grid>
 </Window>
