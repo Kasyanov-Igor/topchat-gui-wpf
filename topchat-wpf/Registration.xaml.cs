@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using TopChat.Services.Interfaces;
 using TopChat.Services;
+using TopChat.Models.Entities;
 
 
 namespace topchat_wpf
@@ -8,6 +9,8 @@ namespace topchat_wpf
 	public partial class Registration : Window
 	{
 		private ADatabaseConnection _databaseConnection;
+
+		private User? _user;
 
 		public Registration()
 		{
@@ -17,18 +20,22 @@ namespace topchat_wpf
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			IUserServes userServes = new UserServes(this._databaseConnection);
+			IUserServes userServes = new UserService(this._databaseConnection);
 
 			if (UserLogin.Text != "" || UserPassword.Text != "")
 			{
-				if (!userServes.Registration(UserLogin.Text, UserPassword.Text))
+				if (!userServes.Registration(new User() { Login = UserLogin.Text, Password = UserPassword.Text }))
 				{
 					MessageBox.Show("Такой логин уже существует. Пожалуйста, придумайте новый.", Name = "ERROR");
 				}
 				else
 				{
-					Menu viewMenu = new Menu();
-					viewMenu.Show();
+					this._user = userServes.GetUser(UserLogin.Text);
+
+					MessageBox.Show("Registration was successful.", Name = "OK");
+
+					MainWindow mainWindow = new MainWindow();
+					mainWindow.Show();
 					this.Close();
 				}
 			}
@@ -47,6 +54,13 @@ namespace topchat_wpf
 		private void UserPassword_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
 		{
 
+		}
+
+		private void Back_Button_Click_1(object sender, RoutedEventArgs e)
+		{
+			MainWindow mainWindow = new MainWindow();
+			mainWindow.Show();
+			this.Close();
 		}
 	}
 }

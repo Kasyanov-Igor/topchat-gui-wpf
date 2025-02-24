@@ -1,0 +1,36 @@
+﻿<Window x:Class="topchat_wpf.ContactList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:topchat_wpf"
+        mc:Ignorable="d"
+        Title="ContactList" Height="450" Width="800">
+    <Grid>
+        <RadioButton Content="Delete contact" HorizontalAlignment="Left" FontSize="20" x:Name="DeleteContactRadioButton"
+                     Margin="61,162,0,0" VerticalAlignment="Top" Click="DeleteContact_Checked" Height="55" Width="165" Checked="DeleteContact_Checked"/>
+        <RadioButton Content="Rename contact"  FontSize="20" HorizontalAlignment="Left" Margin="61,275,0,0" VerticalAlignment="Top" x:Name="RenameContactRadioButton"
+                     Height="42" Width="187" Click="RenameContact_Checked" Checked="RenameContact_Checked"/>
+        <TextBox HorizontalAlignment="Left" x:Name="NameContact" Margin="280,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                 Width="188" Height="38" Visibility="Collapsed" FontSize="20"/>
+
+        <TextBox HorizontalAlignment="Left" x:Name="InfaContact" Visibility="Collapsed" Margin="280,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" 
+                 Width="188" Height="38"  FontSize="20"/>
+        <TextBlock HorizontalAlignment="Left" x:Name="LoginTabl" Visibility="Collapsed" TextAlignment ="Center" 
+                   Margin="314,44,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="106"/>
+        <TextBlock HorizontalAlignment="Left" x:Name="IpAdressTabl" Visibility="Collapsed" TextAlignment ="Center"  
+                   Margin="314,141,0,0" TextWrapping="Wrap" Text="Ip Adress" VerticalAlignment="Top" Width="106"/>
+        <TextBlock HorizontalAlignment="Left" x:Name="NewNameLogin" Visibility="Collapsed" TextAlignment ="Center"  
+                   Margin="314,141,0,0" TextWrapping="Wrap" Text="New Login" VerticalAlignment="Top" Width="106"/>
+        <RadioButton Content="Add contact" HorizontalAlignment="Left" FontSize="15" x:Name="AddContactRadioButton"
+                     Margin="61,73,0,0" VerticalAlignment="Top" Height="31" Width="130" Checked="RadioButton_Checked"/>
+        <Button Content="Enter" x:Name="ButtonEnter" HorizontalAlignment="Center" FontSize="20" Visibility="Collapsed"
+                Margin="0,348,0,0" VerticalAlignment="Top" Height="31" Width="150" Click="ButtonEnter_Click_1"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,21,0,0" TextWrapping="Wrap" x:Name="ContactListText" Visibility="Collapsed"
+                 VerticalAlignment="Top" Width="357" Height="325"/>
+        <Button Content="Contact list" x:Name="ContactListButton" HorizontalAlignment="Left" FontSize="20"
+                Margin="645,113,0,0" VerticalAlignment="Top" Height="41" Width="145" Click="ContactListButton_Click"/>
+
+
+    </Grid>
+</Window>
