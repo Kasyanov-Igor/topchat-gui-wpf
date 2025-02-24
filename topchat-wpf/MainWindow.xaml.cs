@@ -26,7 +26,7 @@ namespace topchat_wpf
 				if (userServes.FindUser(new User() { Login = UserLogin.Text, Password = UserPassword.Text }))
 				{
 					this._user = userServes.GetUser(UserLogin.Text);
-					Menu menu = new Menu(this._user);
+					Menu menu = new Menu(this._user, this._databaseConnection, new ConnectionProviderUdp(), new DataConverterService());
 					menu.Show();
 					this.Close();
 				}

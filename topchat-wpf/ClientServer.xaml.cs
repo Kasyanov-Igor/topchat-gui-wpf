@@ -1,11 +1,7 @@
 ﻿using Microsoft.Win32;
-using System.IO;
-using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Windows;
-using TopChat.Models;
-using TopChat.Services;
+using TopChat.Models.Entities;
 using TopChat.Services.Interfaces;
 
 namespace topchat_wpf
@@ -18,18 +14,18 @@ namespace topchat_wpf
 
 		private IDataBaseService _dataBaseService;
 
-		public Client___Server()
+		public Client___Server(IConnectionProvider connectionProvider, IMessageService messageService, IDataBaseService baseService)
 		{
 			InitializeComponent();
 
-			this._dataBaseService = new DataBaseService(new DataConverterService(), new SqliteConnection());
+			this._dataBaseService = baseService;
 
-			this._providerUdp = new ConnectionProviderUdp();
+			this._providerUdp = connectionProvider;
 
-			this._messageServiceClient = new MessageServiceClient(new DataConverterService(), new NetworkDataService(this._providerUdp));
+			this._messageServiceClient = messageService;
 		}
 
-		private async void Button_Click(object sender, RoutedEventArgs e)
+		private void Button_Click(object sender, RoutedEventArgs e)
 		{
 			UdpClient u = new UdpClient(5000);
 
@@ -66,7 +62,6 @@ namespace topchat_wpf
 				MessageBox.Show("Выбран файл: " + filename);
 
 				Message fileUser = new Message()
-
 				{
 					DateTime = DateTime.Now,
 					MediaData = new Media() { PathToFile = filename }
