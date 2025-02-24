@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="ClientPart" Height="450" Width="800">
     <Grid>
-        <TextBox HorizontalAlignment="Center" Margin="0,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372" Height="173"/>
-        <Button Content="SEND" HorizontalAlignment="Center" Margin="0,314,0,0" VerticalAlignment="Top" Height="38" Width="175" FontSize="20"/>
-
+        <TextBox HorizontalAlignment="Center" Margin="0,103,0,0" x:Name="ClientText" TextWrapping="Wrap" VerticalAlignment="Top" Width="372" Height="173"/>
+        <Button Content="SEND" HorizontalAlignment="Center" Margin="0,314,0,0" VerticalAlignment="Top" Height="38" Width="176" FontSize="20" Click="ButtonSend_Click"/>
+        <Button Content="----" HorizontalAlignment="Left" FontSize="24" Margin="529,314,0,0" VerticalAlignment="Top" Height="38" Width="57" Click="ButtonOpenFile_Click"/>
+        <ComboBox HorizontalAlignment="Center" Margin="0,65,0,0" x:Name="ComboBox" VerticalAlignment="Top" Width="316" Height="21"
+                  SelectionChanged="ComboBox_SelectionChanged"/>
+        
     </Grid>
 </Window>
