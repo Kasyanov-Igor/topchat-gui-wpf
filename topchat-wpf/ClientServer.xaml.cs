@@ -1,7 +1,10 @@
-﻿using System.Net;
+﻿using Microsoft.Win32;
+using System.IO;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows;
+using TopChat.Models;
 using TopChat.Services;
 using TopChat.Services.Interfaces;
 
@@ -11,29 +14,66 @@ namespace topchat_wpf
 	{
 		private IConnectionProvider _providerUdp;
 
+		private IMessageService _messageServiceClient;
+
+		private IDataBaseService _dataBaseService;
+
 		public Client___Server()
 		{
 			InitializeComponent();
 
+			this._dataBaseService = new DataBaseService(new DataConverterService(), new SqliteConnection());
+
 			this._providerUdp = new ConnectionProviderUdp();
-			this._providerUdp.SetDestination("127.0.0.1", 5000);
+
+			this._messageServiceClient = new MessageServiceClient(new DataConverterService(), new NetworkDataService(this._providerUdp));
 		}
 
-		private void Button_Click(object sender, RoutedEventArgs e)
+		private async void Button_Click(object sender, RoutedEventArgs e)
 		{
 			UdpClient u = new UdpClient(5000);
 
 			UdpReceiveResult receivedResults = u.ReceiveAsync().Result;
 			byte[] receivedBytes = receivedResults.Buffer;
-			IPEndPoint remoteEndPoint = receivedResults.RemoteEndPoint;
 
-			ServerText.Text += $"Получено от {remoteEndPoint.Address}: {Encoding.UTF8.GetString(receivedBytes)}";
+			this._dataBaseService.AddMessage(receivedBytes);
+
+			//this._messageServiceClient.GetMessages();
 		}
 
 		private void Button_Click_1(object sender, RoutedEventArgs e)
 		{
-			this._providerUdp.Send(Encoding.UTF8.GetBytes(ClientText.Text));
+			Message textUser = new Message()
+			{
+				DateTime = DateTime.Now,
+				MediaData = new Media() { Text = ClientText.Text }
+			};
+
+			this._messageServiceClient.AddMessage(textUser);
 			ClientText.Clear();
+		}
+
+		private void OpenFile_Click(object sender, RoutedEventArgs e)
+		{
+			OpenFileDialog openFileDialog = new OpenFileDialog();
+
+			openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+			if (openFileDialog.ShowDialog() == true)
+			{
+				string filename = openFileDialog.FileName;
+
+				MessageBox.Show("Выбран файл: " + filename);
+
+				Message fileUser = new Message()
+
+				{
+					DateTime = DateTime.Now,
+					MediaData = new Media() { PathToFile = filename }
+				};
+
+				this._messageServiceClient.AddMessage(fileUser);
+			}
 		}
 	}
 }
