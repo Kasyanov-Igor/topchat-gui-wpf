@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="ContactList" Height="450" Width="800">
     <Grid>
-        <Button Content="Delete contact" x:Name="DeleteContact" HorizontalAlignment="Left" Margin="61,162,0,0" VerticalAlignment="Top" Click="DeleteContact_Click" Height="74" Width="141"/>
+        <RadioButton Content="Delete contact" x:Name="DeleteContact" HorizontalAlignment="Left" FontSize="20" 
+                     Margin="61,162,0,0" VerticalAlignment="Top" Click="DeleteContact_Click" Height="55" Width="165"/>
         <Button Content="Rename contact" x:Name="RenameContact" HorizontalAlignment="Left" Margin="61,275,0,0" VerticalAlignment="Top" Height="71" Width="142" Click="RenameContact_Click"/>
         <TextBox HorizontalAlignment="Left" x:Name="NameContact" Margin="280,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
                  Width="188" Height="38" Visibility="Collapsed" FontSize="20"/>
@@ -25,6 +26,8 @@
                  VerticalAlignment="Top" Width="357" Height="325"/>
         <Button Content="Contact list" x:Name="ContactListButton" HorizontalAlignment="Left" FontSize="20"
                 Margin="645,113,0,0" VerticalAlignment="Top" Height="41" Width="145" Click="ContactListButton_Click"/>
+        <Button Content="Enter" x:Name="ButtonEnterDelete" HorizontalAlignment="Center" FontSize="20" Visibility="Collapsed"
+                Margin="0,251,0,0" VerticalAlignment="Top" Height="31" Width="150" Click="ButtonEnterDelete_Click_1"/>
 
     </Grid>
 </Window>

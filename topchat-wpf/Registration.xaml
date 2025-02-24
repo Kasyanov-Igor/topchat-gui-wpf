@@ -24,5 +24,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="212,217,0,0" TextWrapping="Wrap" Text="Login:" FontSize="20" VerticalAlignment="Top" Height="31" Width="63"/>
         <TextBlock HorizontalAlignment="Left" Margin="184,306,0,0" TextWrapping="Wrap" Text="Password:" FontSize="20" VerticalAlignment="Top" Height="29" Width="91"/>
         <Button Content="Enter" HorizontalAlignment="Left" Margin="326,375,0,0" VerticalAlignment="Top" Width="148" Click="Button_Click" FontSize="22"/>
+        <Button Grid.Column="1" Content="Back" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top"
+                Height="40" Width="166" FontSize="22" FontFamily="Arial Black" Background="#FFA8AFBF" Click="Back_Button_Click_1"/>
     </Grid>
 </Window>

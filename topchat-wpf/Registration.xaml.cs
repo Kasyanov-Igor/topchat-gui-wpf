@@ -6,51 +6,61 @@ using TopChat.Models.Entities;
 
 namespace topchat_wpf
 {
-    public partial class Registration : Window
-    {
-        private ADatabaseConnection _databaseConnection;
+	public partial class Registration : Window
+	{
+		private ADatabaseConnection _databaseConnection;
 
-        private User? _user;
+		private User? _user;
 
-        public Registration()
-        {
-            this._databaseConnection = new SqliteConnection();
-            InitializeComponent();
-        }
+		public Registration()
+		{
+			this._databaseConnection = new SqliteConnection();
+			InitializeComponent();
+		}
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            IUserServes userServes = new UserService(this._databaseConnection);
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			IUserServes userServes = new UserService(this._databaseConnection);
 
-            if (UserLogin.Text != "" || UserPassword.Text != "")
-            {
-                if (!userServes.Registration(new User() { Login = UserLogin.Text, Password = UserPassword.Text }))
-                {
-                    MessageBox.Show("Такой логин уже существует. Пожалуйста, придумайте новый.", Name = "ERROR");
-                }
-                else
-                {
-                    this._user = userServes.GetUser(UserLogin.Text);
-                    Menu viewMenu = new Menu(this._user);
-                    viewMenu.Show();
-                    this.Close();
-                }
-            }
-            else
-            {
-                MessageBox.Show("ENTER LOGIN AND PASSWORD.", Name = "ERROR");
-            }
+			if (UserLogin.Text != "" || UserPassword.Text != "")
+			{
+				if (!userServes.Registration(new User() { Login = UserLogin.Text, Password = UserPassword.Text }))
+				{
+					MessageBox.Show("Такой логин уже существует. Пожалуйста, придумайте новый.", Name = "ERROR");
+				}
+				else
+				{
+					this._user = userServes.GetUser(UserLogin.Text);
 
-        }
+					MessageBox.Show("Registration was successful.", Name = "OK");
 
-        private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
+					MainWindow mainWindow = new MainWindow();
+					mainWindow.Show();
+					this.Close();
+				}
+			}
+			else
+			{
+				MessageBox.Show("ENTER LOGIN AND PASSWORD.", Name = "ERROR");
+			}
 
-        }
+		}
 
-        private void UserPassword_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
+		private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+		{
 
-        }
-    }
+		}
+
+		private void UserPassword_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+		{
+
+		}
+
+		private void Back_Button_Click_1(object sender, RoutedEventArgs e)
+		{
+			MainWindow mainWindow = new MainWindow();
+			mainWindow.Show();
+			this.Close();
+		}
+	}
 }

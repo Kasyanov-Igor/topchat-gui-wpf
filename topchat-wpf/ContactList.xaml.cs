@@ -27,25 +27,11 @@ namespace topchat_wpf
 
 		private void DeleteContact_Click(object sender, RoutedEventArgs e)
 		{
+            this.LoginTabl.Visibility = Visibility.Visible;
+            this.IpAdressTabl.Visibility = Visibility.Visible;
+			this.ButtonEnterDelete.Visibility = Visibility.Visible;
 
-			//if (this.NameContact.Text != null || this.InfaContact.Text != null)
-			//{
-			//	UserContact contact = new UserContact()
-			//	{
-			//		UserName = this.NameContact.Text,
-			//		UserIp = this.InfaContact.Text
-			//	};
-
-			//	if (userServes.DeleteContact(this._user, contact))
-			//	{
-			//		MessageBox.Show("User successfully added.", Name = "Ok");
-			//	}
-			//}
-			//else
-			//{
-			//	MessageBox.Show("ENTER INF.", Name = "ERROR");
-			//}
-		}
+        }
 
 		private void RenameContact_Click(object sender, RoutedEventArgs e)
 		{
@@ -78,9 +64,11 @@ namespace topchat_wpf
 		{
 			if (this.NameContact.Text != "" || this.InfaContact.Text != "")
 			{
+				IUserServes userServes = new UserService(this._databaseConnection);
+
 				UserContact contact = new UserContact()
 				{
-					user = this._user,
+					user = userServes.GetUser(this._user.Login),
 					UserName = this.NameContact.Text,
 					UserIp = this.InfaContact.Text,
 					dateTime = DateTime.Now
@@ -95,15 +83,17 @@ namespace topchat_wpf
 			else
 			{
 				this.ContactListText.Visibility = Visibility.Collapsed;
+				this.ContactListText.Clear();
 			}
 		}
 
 		private void ContactListButton_Click(object sender, RoutedEventArgs e)
 		{
-			this.ContactListText.Visibility = Visibility.Visible;
 
-			if (this._databaseConnection.UserContacts != null)
+			if (this._databaseConnection.UserContacts.Any())
 			{
+				this.ContactListText.Visibility = Visibility.Visible;
+
 				foreach (var contact in this._databaseConnection.UserContacts)
 				{
 					if (contact.user.Login == this._user.Login)
@@ -117,5 +107,32 @@ namespace topchat_wpf
 				MessageBox.Show("list empty", "ERROR");
 			}
 		}
-	}
+
+        private void ButtonEnterDelete_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (this.NameContact.Text != "" || this.InfaContact.Text != "")
+            {
+                IUserServes userServes = new UserService(this._databaseConnection);
+
+                UserContact contact = new UserContact()
+                {
+                    user = userServes.GetUser(this._user.Login),
+                    UserName = this.NameContact.Text,
+                    UserIp = this.InfaContact.Text,
+                    dateTime = DateTime.Now
+                };
+
+                if (this._userContactService.AddContact(contact))
+                {
+                    this.NameContact.Clear();
+                    this.InfaContact.Clear();
+                }
+            }
+            else
+            {
+                this.ContactListText.Visibility = Visibility.Collapsed;
+                this.ContactListText.Clear();
+            }
+        }
+    }
 }
