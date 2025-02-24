@@ -39,7 +39,11 @@ namespace topchat_wpf
 
 			foreach (var contact in this._connection.UserContacts.Include(uc => uc.User))
 			{
-				this._listUserName.Add(contact.UserName);
+				if (contact.User.Login == this._user.Login)
+				{
+					this._listUserName.Add(contact.UserName);
+				}
+
 			}
 
 			ComboBox.ItemsSource = this._listUserName;

@@ -32,7 +32,7 @@ namespace topchat_wpf
 			UdpReceiveResult receivedResults = u.ReceiveAsync().Result;
 			byte[] receivedBytes = receivedResults.Buffer;
 
-			this._dataBaseService.AddMessage(receivedBytes);
+			//this._dataBaseService.AddMessage(receivedBytes);
 
 			//this._messageServiceClient.GetMessages();
 		}

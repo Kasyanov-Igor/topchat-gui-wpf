@@ -51,5 +51,14 @@ namespace topchat_wpf
 			contact.Show();
 			this.Close();
 		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			ServerPart server = new ServerPart(this._user, new MessageServiceClient(_dataConverterService, new NetworkDataService(this._connectionProvider)),
+				this._connection);
+
+			server.Show();
+			this.Close();
+		}
 	}
 }

@@ -14,8 +14,8 @@
                 Height="37" Width="150" FontSize="20" Click="Client_Button_Click_1"/>
         <Button Content="Contacts" HorizontalAlignment="Left" Margin="103,271,0,0" VerticalAlignment="Top"
                 Height="37" Width="150" FontSize="20" Click="ContactButton_Click_1"/>
-        <Button Content="Servir" HorizontalAlignment="Left" FontSize="20" Margin="103,338,0,0" VerticalAlignment="Top"
-                Height="37" Width="150"/>
+        <Button Content="Server" HorizontalAlignment="Left" FontSize="20" Margin="103,338,0,0" VerticalAlignment="Top"
+                Height="37" Width="150" Click="Button_Click"/>
 
     </Grid>
 </Window>
