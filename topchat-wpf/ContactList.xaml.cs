@@ -146,5 +146,12 @@ namespace topchat_wpf
 			this.NameContact.Visibility = Visibility.Visible;
 			this.ButtonEnter.Visibility = Visibility.Visible;
 		}
-	}
+
+		private void Back_Button_Click_1(object sender, RoutedEventArgs e)
+		{
+			Menu menu = new Menu(this._user, this._databaseConnection, new ConnectionProviderUdp(), new DataConverterService());
+			menu.Show();
+			this.Close();
+		}
+    }
 }

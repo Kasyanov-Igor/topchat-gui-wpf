@@ -10,11 +10,12 @@
         <ImageBrush ImageSource="/background.png" Stretch="Fill" TileMode="None"/>
     </Window.Background>
 
-    <Grid>
+    <Grid Margin="0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="23*"/>
-            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="71*"/>
+            <ColumnDefinition Width="29*"/>
         </Grid.ColumnDefinitions>
+
 
         <TextBlock HorizontalAlignment="Left" Margin="302,97,0,0" TextWrapping="Wrap" Text="LOGIN" FontSize="30" 
                    TextAlignment="Center" VerticalAlignment="Top" Height="47" Width="196"/>
@@ -24,7 +25,7 @@
                  VerticalAlignment="Top" Width="210" Height="51" FontSize="25" TextChanged="UserPassword_TextChanged"/>
         <TextBlock HorizontalAlignment="Left" Margin="212,217,0,0" TextWrapping="Wrap" Text="Login:" FontSize="20" VerticalAlignment="Top" Height="31" Width="63"/>
         <TextBlock HorizontalAlignment="Left" Margin="184,306,0,0" TextWrapping="Wrap" Text="Password:" FontSize="20" VerticalAlignment="Top" Height="29" Width="91"/>
-        <Button Content="Enter" HorizontalAlignment="Left" Margin="326,383,0,0" VerticalAlignment="Top" Width="148" Click="Button_Click" Background="#FFA8AFBF" FontSize="16"/>
-        <Button Grid.Column="1" Content="Registration" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" Height="40" Width="166" FontSize="22" FontFamily="Arial Black" Background="#FFA8AFBF" Click="Button_Click_1"/>
+        <Button Content="Enter" HorizontalAlignment="Left" Margin="326,383,0,0" VerticalAlignment="Top" Width="148" Click="Button_Click" Background="#FFA8AFBF" FontSize="16" Height="25"/>
+        <Button Grid.Column="1" Content="Registration" HorizontalAlignment="Center" Margin="0,58,0,0" VerticalAlignment="Top" Height="40" Width="166" FontSize="22" FontFamily="Arial Black" Background="#FFA8AFBF" Click="Button_Click_1"/>
     </Grid>
 </Window>
