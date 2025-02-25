@@ -46,6 +46,8 @@ namespace topchat_wpf
 					{
 						IUserServes userServes = new UserService(this._databaseConnection);
 
+						UserContactService userContact = new UserContactService(this._databaseConnection);
+
 						UserContact contact = new UserContact()
 						{
 							User = userServes.GetUser(this._user.Login),
@@ -54,12 +56,19 @@ namespace topchat_wpf
 							dateTime = DateTime.Now
 						};
 
-						if (this._userContactService.AddContact(contact))
+						if (userServes.FindUser(userServes.GetUser(this.NameContact.Text)))
 						{
-							this.NameContact.Clear();
-							this.InfaContact.Clear();
+							if (this._userContactService.AddContact(contact))
+							{
+								this.NameContact.Clear();
+								this.InfaContact.Clear();
 
-							MessageBox.Show("Contact Added", "OK");
+								MessageBox.Show("Contact Added", "OK");
+							}
+						}
+						else
+						{
+							MessageBox.Show("No such user exists", "ERROR");
 						}
 					}
 				}
@@ -137,5 +146,12 @@ namespace topchat_wpf
 			this.NameContact.Visibility = Visibility.Visible;
 			this.ButtonEnter.Visibility = Visibility.Visible;
 		}
-	}
+
+		private void Back_Button_Click_1(object sender, RoutedEventArgs e)
+		{
+			Menu menu = new Menu(this._user, this._databaseConnection, new ConnectionProviderUdp(), new DataConverterService());
+			menu.Show();
+			this.Close();
+		}
+    }
 }

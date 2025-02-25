@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System.Net.Sockets;
+using System.Text;
 using System.Windows;
 using TopChat.Models.Entities;
 using TopChat.Services.Interfaces;
@@ -32,7 +33,9 @@ namespace topchat_wpf
 			UdpReceiveResult receivedResults = u.ReceiveAsync().Result;
 			byte[] receivedBytes = receivedResults.Buffer;
 
-			this._dataBaseService.AddMessage(receivedBytes);
+			this.ServerText.Text += Encoding.UTF8.GetString(receivedBytes);
+
+			//this._dataBaseService.AddMessage(receivedBytes);
 
 			//this._messageServiceClient.GetMessages();
 		}

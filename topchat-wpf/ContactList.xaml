@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:topchat_wpf"
         mc:Ignorable="d"
         Title="ContactList" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="/background.png"/>
+    </Window.Background>
     <Grid>
         <RadioButton Content="Delete contact" HorizontalAlignment="Left" FontSize="20" x:Name="DeleteContactRadioButton"
                      Margin="61,162,0,0" VerticalAlignment="Top" Click="DeleteContact_Checked" Height="55" Width="165" Checked="DeleteContact_Checked"/>
@@ -30,7 +33,8 @@
                  VerticalAlignment="Top" Width="357" Height="325"/>
         <Button Content="Contact list" x:Name="ContactListButton" HorizontalAlignment="Left" FontSize="20"
                 Margin="645,113,0,0" VerticalAlignment="Top" Height="41" Width="145" Click="ContactListButton_Click"/>
-
+        <Button Content="Back" HorizontalAlignment="Left" Margin="624,45,0,0" VerticalAlignment="Top"
+         Height="40" Width="166" FontSize="22" FontFamily="Arial Black" Background="#FFA8AFBF" Click="Back_Button_Click_1"/>
 
     </Grid>
 </Window>
