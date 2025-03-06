@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using System.Windows;
+using TopChat.Models.Domains;
 using TopChat.Models.Entities;
 using TopChat.Services;
 using TopChat.Services.Interfaces;
@@ -53,6 +54,8 @@ namespace topchat_wpf
 		{
 			IUserServes userServes = new UserService(this._connection);
 
+			var b = userServes.GetUser(ComboBox.Text);
+
 			Message textUser = new Message()
 			{
 				DateTime = DateTime.Now,
@@ -61,7 +64,7 @@ namespace topchat_wpf
 				Recipient = userServes.GetUser(ComboBox.Text)
 			};
 
-			this._messageServiceClient.AddMessage(textUser);
+			this._messageServiceClient.AddMessage(textUser, SendType.Create);
 			ClientText.Clear();
 		}
 
@@ -83,7 +86,7 @@ namespace topchat_wpf
 					MediaData = new Media() { PathToFile = filename }
 				};
 
-				this._messageServiceClient.AddMessage(fileUser);
+				this._messageServiceClient.AddMessage(fileUser, SendType.Create);
 			}
 		}
 

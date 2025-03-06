@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Net.Sockets;
 using System.Windows;
 using TopChat.Models.Domains;
 using TopChat.Models.Entities;
@@ -41,17 +40,13 @@ namespace topchat_wpf
 			ComboBox.ItemsSource = this._listUserName;
 		}
 
-		private void StartServer_Click(object sender, RoutedEventArgs e)
+		private async Task StartServer_ClickAsync(object sender, RoutedEventArgs e)
 		{
-			UdpClient u = new UdpClient(5000);
+            ConnectionProviderUdp providerUdp = new ConnectionProviderUdp();
 
-			UdpReceiveResult receivedResults = u.ReceiveAsync().Result;
-			byte[] receivedBytes = receivedResults.Buffer;
+            await providerUdp.StartAsync();
 
-			//IConnectionProvider connectionProvider = new ConnectionProviderUdp();
-
-			//connectionProvider.StartReceive();
-		}
+        }
 
 		private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
 		{
