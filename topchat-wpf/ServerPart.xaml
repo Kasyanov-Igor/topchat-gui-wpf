@@ -6,11 +6,19 @@
         xmlns:local="clr-namespace:topchat_wpf"
         mc:Ignorable="d"
         Title="ServerPart" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="/background.png"/>
+    </Window.Background>
     <Grid>
         <TextBlock HorizontalAlignment="Center" x:Name="ServerText" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Height="205" Width="493" FontSize="18"/>
         <TextBox HorizontalAlignment="Center" Margin="0,58,0,0" TextWrapping="Wrap" Text="Server" VerticalAlignment="Top" Width="64" Height="32" Background="{x:Null}" FontSize="20" BorderBrush="Black"/>
-        <Button Content="Start Server" HorizontalAlignment="Center" Margin="0,354,0,0" VerticalAlignment="Top" Height="35" 
-                Width="157" FontSize="14" Background="#FFCCCCCC" Click="Button_Click"/>
+        <Button Content="Start Server" HorizontalAlignment="Left" Margin="34,55,0,0" VerticalAlignment="Top" Height="35" 
+                Width="157" FontSize="14" Background="#FFCCCCCC" Click="StartServer_Click"/>
+        <ComboBox HorizontalAlignment="Left" Margin="512,58,0,0" x:Name="ComboBox" VerticalAlignment="Top" Width="144" Height="32"
+                  SelectionChanged="ComboBox_SelectionChanged"/>
+        <Button Content="View" HorizontalAlignment="Center" FontSize="20"  Margin="0,343,0,0" VerticalAlignment="Top"
+                Height="47" Width="169" Click="ViewButton_click"/>
+
 
     </Grid>
 </Window>
